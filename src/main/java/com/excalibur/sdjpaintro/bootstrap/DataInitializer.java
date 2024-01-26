@@ -15,14 +15,10 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        bookRepository.deleteAll();
 
         Book bookDDD = new Book("Domain Driven Design", "123", "Random");
-
-        System.out.println("Id: " + bookDDD.getId());
-
         Book savedDDD = bookRepository.save(bookDDD);
-
-        System.out.println("Id: " + savedDDD.getId());
 
         Book bookSIA = new Book("Spring In Action", "456", "O'Reilly");
         Book savedSIA = bookRepository.save(bookSIA);
