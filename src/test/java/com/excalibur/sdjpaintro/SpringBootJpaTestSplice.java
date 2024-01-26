@@ -17,7 +17,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @DataJpaTest
-@ComponentScan(basePackages = {com.excalibur.sdjpaintro.bootstrap})
+@ComponentScan(basePackages = {"com.excalibur.sdjpaintro.bootstrap"})
 public class SpringBootJpaTestSplice {
 
     @Autowired
