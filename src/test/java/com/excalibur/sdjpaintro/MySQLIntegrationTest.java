@@ -1,8 +1,10 @@
 package com.excalibur.sdjpaintro;
 
 import com.excalibur.sdjpaintro.domain.AuthorUuid;
+import com.excalibur.sdjpaintro.domain.BookNatural;
 import com.excalibur.sdjpaintro.domain.BookUuid;
 import com.excalibur.sdjpaintro.repositories.AuthorUuidRepository;
+import com.excalibur.sdjpaintro.repositories.BookNaturalRepository;
 import com.excalibur.sdjpaintro.repositories.BookRepository;
 
 import com.excalibur.sdjpaintro.repositories.BookUuidRepository;
@@ -29,6 +31,19 @@ public class MySQLIntegrationTest {
 
     @Autowired
     BookUuidRepository bookUuidRepository;
+
+    @Autowired
+    BookNaturalRepository bookNaturalRepository;
+
+    @Test
+    void bookNaturalTest() {
+        BookNatural bookNatural = new BookNatural();
+        bookNatural.setTitle("My Book");
+        BookNatural saved = bookNaturalRepository.save(bookNatural);
+
+        BookNatural fetched = bookNaturalRepository.getById(saved.getTitle());
+        assertThat(fetched).isNotNull();
+    }
 
     @Test
     void testBookUuid() {
