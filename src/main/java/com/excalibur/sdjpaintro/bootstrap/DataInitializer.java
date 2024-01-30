@@ -1,6 +1,8 @@
 package com.excalibur.sdjpaintro.bootstrap;
 
+import com.excalibur.sdjpaintro.domain.AuthorUuid;
 import com.excalibur.sdjpaintro.domain.Book;
+import com.excalibur.sdjpaintro.repositories.AuthorUuidRepository;
 import com.excalibur.sdjpaintro.repositories.BookRepository;
 
 import org.springframework.boot.CommandLineRunner;
@@ -8,9 +10,11 @@ import org.springframework.boot.CommandLineRunner;
 public class DataInitializer implements CommandLineRunner {
 
     private final BookRepository bookRepository;
+    private final AuthorUuidRepository authorUuidRepository;
 
-    public DataInitializer(BookRepository bookRepository) {
+    public DataInitializer(BookRepository bookRepository, AuthorUuidRepository authorUuidRepository) {
         this.bookRepository = bookRepository;
+        this.authorUuidRepository = authorUuidRepository;
     }
 
     @Override
@@ -27,5 +31,11 @@ public class DataInitializer implements CommandLineRunner {
             System.out.println("Book Title: " + book.getId());
             System.out.println("Book Title: " + book.getTitle());
         });
+
+        AuthorUuid authorUuid = new AuthorUuid();
+        authorUuid.setFirstName("Alexia");
+        authorUuid.setLastName("Straza");
+        AuthorUuid savedAuthor = authorUuidRepository.save(authorUuid);
+        System.out.println("Saved Author UUID: " + savedAuthor.getId());
     }
 }
